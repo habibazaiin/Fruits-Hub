@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/features/on_boarding/presentation/views/widgets/on_boarding_body.dart';
 
 class OnBoarding extends StatelessWidget {
   const OnBoarding({super.key});
@@ -6,6 +7,8 @@ class OnBoarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: const OnBoardingBody(),
+    );
   }
 }
