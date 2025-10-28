@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/features/on_boarding/presentation/views/on_boarding.dart';
 import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
@@ -7,6 +8,10 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
     case SplashView.routeName:
       return MaterialPageRoute(
         builder: (context) => const SplashView(),
+      );
+      case OnBoarding.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const OnBoarding(),
       );
     // Define your routes here
     default:
