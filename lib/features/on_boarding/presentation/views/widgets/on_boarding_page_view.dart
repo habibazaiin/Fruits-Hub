@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/utils/app_images.dart';
+import 'package:fruits_hub/features/on_boarding/presentation/views/widgets/page_view_item.dart';
 
 class OnBoardingPageView extends StatelessWidget {
   const OnBoardingPageView({super.key});
@@ -6,7 +8,34 @@ class OnBoardingPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView(
-      children: [],
+      children: [
+        PageViewItem(
+          image: Assets.assetsImagesPageViewImage1,
+          backGroundImage: Assets.assetsImagesPageViewBackfround1,
+          subTitle:
+              'اكتشف تجربة تسوق فريدة مع FruitHUB. استكشف مجموعتنا الواسعة من الفواكه الطازجة الممتازة واحصل على أفضل العروض والجودة العالية.',
+          title: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('مرحبًا بك في '),
+              const Text('Fruit'),
+              const Text('HUB')
+            ],
+          ),
+        ),
+        PageViewItem(
+          image: Assets.assetsImagesPageViewImage2,
+          backGroundImage: Assets.assetsImagesPageViewBackground2,
+          subTitle:
+              'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية',
+          title: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('ابحث وتسوق'),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

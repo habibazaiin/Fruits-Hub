@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/helper_functions/on_generate_routes.dart';
 import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:fruits_hub/l10n/app_localizations.dart';
 
 void main() {
   runApp(const FruitsHub());
@@ -11,11 +13,24 @@ class FruitsHub extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: SplashView.routeName,
 
       onGenerateRoute: onGenerateRoutes,
+      locale: const Locale('ar'),
+
+      // List of delegates that handle loading the translations
+      localizationsDelegates: const [
+        AppLocalizations.delegate, // Your app's specific translations
+        GlobalMaterialLocalizations
+            .delegate, // Built-in Material translations (e.g., "OK", "Cancel")
+        GlobalWidgetsLocalizations.delegate, // For text direction (RTL/LTR)
+        GlobalCupertinoLocalizations.delegate, // For iOS-style widgets
+      ],
+
+      // List of languages your app supports (from your .arb files)
+      supportedLocales: AppLocalizations.supportedLocales,
     );
   }
 }
