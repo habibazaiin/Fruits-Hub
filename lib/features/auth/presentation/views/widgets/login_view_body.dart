@@ -3,6 +3,8 @@ import 'package:fruits_hub/core/utils/app_color.dart';
 import 'package:fruits_hub/core/utils/app_text_style.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
+import 'package:fruits_hub/core/widgets/or_divider.dart';
+import 'package:fruits_hub/features/auth/presentation/views/widgets/do_not_have_an_account_widget.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -35,16 +37,7 @@ class LoginViewBody extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  'هل نسيت كلمة المرور؟',
-                  style: AppTextStyle.semiBold13
-                      .copyWith(color: AppColor.lightPrimaryColor),
-                ),
-              ],
-            ),
+            const DoNotHaveAnAccountWidget(),
             const SizedBox(
               height: 33,
             ),
@@ -64,10 +57,15 @@ class LoginViewBody extends StatelessWidget {
                     style: AppTextStyle.semiBold16
                         .copyWith(color: AppColor.primaryColor)),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 33,
+            ),
+            const OrDivider()
           ],
         ),
       ),
     );
   }
 }
+
