@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/features/on_boarding/presentation/views/widgets/on_boarding_body.dart';
 
-class OnBoarding extends StatelessWidget {
-  const OnBoarding({super.key});
+class OnBoardingView extends StatelessWidget {
+  const OnBoardingView({super.key});
   static const String routeName = 'onBoarding';
 
   @override

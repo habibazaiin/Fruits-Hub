@@ -31,10 +31,16 @@ class PageViewItem extends StatelessWidget {
                   visible: showSkip,
                   child: Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        'تخط',
-                        style: AppTextStyle.regular13
-                            .copyWith(color: const Color(0xFF949D9E)),
+                      child: GestureDetector(
+                        onTap: () {
+                          // Navigate to next screen
+                          Navigator.pushReplacementNamed(context, 'auth');
+                        },
+                        child: Text(
+                          'تخط',
+                          style: AppTextStyle.regular13
+                              .copyWith(color: const Color(0xFF949D9E)),
+                        ),
                       )))
             ],
           ),

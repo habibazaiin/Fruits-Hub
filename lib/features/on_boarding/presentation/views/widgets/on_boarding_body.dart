@@ -43,7 +43,9 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
         position: pageIndex.toDouble(),
         decorator: DotsDecorator(
           activeColor: AppColor.primaryColor,
-          color: AppColor.primaryColor.withAlpha(50),
+          color: pageIndex == 0
+              ? AppColor.primaryColor.withAlpha(50)
+              : AppColor.primaryColor,
         ),
       ),
       const SizedBox(
@@ -53,7 +55,10 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Visibility(
             visible: pageIndex == 1,
-            child: CustomButton(onPressed: () {}, text: 'ابدأ الان')),
+            child: CustomButton(onPressed: () {
+              // Navigate to next screen
+            Navigator.pushReplacementNamed(context, 'auth');
+            }, text: 'ابدأ الان')),
       ),
       SizedBox(
         height: pageIndex == 1 ? 42 : 98,
