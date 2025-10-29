@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/utils/app_color.dart';
 import 'package:fruits_hub/core/utils/app_images.dart';
+import 'package:fruits_hub/core/utils/app_text_style.dart';
 import 'package:fruits_hub/features/on_boarding/presentation/views/widgets/page_view_item.dart';
 
 class OnBoardingPageView extends StatelessWidget {
@@ -10,7 +12,7 @@ class OnBoardingPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return PageView(
       controller: pageController,
-      children: const [
+      children: [
         PageViewItem(
           showSkip: true,
           image: Assets.assetsImagesPageViewImage1,
@@ -19,10 +21,25 @@ class OnBoardingPageView extends StatelessWidget {
               'اكتشف تجربة تسوق فريدة مع FruitHUB. استكشف مجموعتنا الواسعة من الفواكه الطازجة الممتازة واحصل على أفضل العروض والجودة العالية.',
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text('مرحبًا بك في '), Text('Fruit'), Text('HUB')],
+            children: [
+              const Text(
+                'مرحبًا بك في ',
+                style: AppTextStyle.bold23,
+              ),
+              Text(
+                'HUB',
+                style: AppTextStyle.bold23
+                    .copyWith(color: AppColor.secondaryColor),
+              ),
+              Text(
+                'Fruit',
+                style:
+                    AppTextStyle.bold23.copyWith(color: AppColor.primaryColor),
+              ),
+            ],
           ),
         ),
-        PageViewItem(
+        const PageViewItem(
           showSkip: false,
           image: Assets.assetsImagesPageViewImage2,
           backGroundImage: Assets.assetsImagesPageViewBackground2,
@@ -31,10 +48,12 @@ class OnBoardingPageView extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('ابحث وتسوق'),
+              Text(
+                'ابحث وتسوق',
+                style: AppTextStyle.bold23,
+              ),
             ],
           ),
-          
         ),
       ],
     );

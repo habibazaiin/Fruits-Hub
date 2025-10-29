@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/utils/app_text_style.dart';
 import 'package:svg_flutter/svg.dart';
 
 class PageViewItem extends StatelessWidget {
@@ -7,7 +8,8 @@ class PageViewItem extends StatelessWidget {
       required this.image,
       required this.backGroundImage,
       required this.subTitle,
-      required this.title, required this.showSkip});
+      required this.title,
+      required this.showSkip});
   final String image, backGroundImage, subTitle;
   final Widget title;
   final bool showSkip;
@@ -26,8 +28,14 @@ class PageViewItem extends StatelessWidget {
               Positioned(
                   bottom: 0, right: 0, left: 0, child: SvgPicture.asset(image)),
               Visibility(
-                visible: showSkip,
-                child: const Padding(padding: EdgeInsets.all(16.0), child: Text('تخط')))
+                  visible: showSkip,
+                  child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'تخط',
+                        style: AppTextStyle.regular13
+                            .copyWith(color: const Color(0xFF949D9E)),
+                      )))
             ],
           ),
         ),
@@ -39,10 +47,11 @@ class PageViewItem extends StatelessWidget {
           height: 24,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 36.0),
           child: Text(
             subTitle,
             textAlign: TextAlign.center,
+            style: AppTextStyle.semiBold13,
           ),
         ),
       ],
