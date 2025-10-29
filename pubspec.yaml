@@ -14,11 +14,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.20.2
+  shared_preferences: ^2.5.3
   svg_flutter: ^0.0.1
 
 dev_dependencies:
-
-  # --- CORRECTED DEV PACKAGES ---
   flutter_launcher_icons: ^0.13.1 # <-- CORRECTED VERSION
   flutter_lints: ^4.0.0 # <-- CORRECTED VERSION
   flutter_test:
@@ -31,7 +30,7 @@ flutter:
     - assets/images/
 
   fonts:
-    - family: Cairo  
+    - family: Cairo
       fonts:
         - asset: assets/fonts/Cairo-Regular.ttf
         - asset: assets/fonts/Cairo-Bold.ttf
