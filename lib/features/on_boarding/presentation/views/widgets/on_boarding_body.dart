@@ -1,5 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/constants.dart';
+import 'package:fruits_hub/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_hub/core/utils/app_color.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/on_boarding/presentation/views/widgets/on_boarding_page_view.dart';
@@ -56,6 +58,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
         child: Visibility(
             visible: pageIndex == 1,
             child: CustomButton(onPressed: () {
+              Prefs.setBool(kIsOnBoardingViewSeenSeenKey, true);
               // Navigate to next screen
             Navigator.pushReplacementNamed(context, 'auth');
             }, text: 'ابدأ الان')),

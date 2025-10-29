@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/constants.dart';
+import 'package:fruits_hub/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_hub/core/utils/app_text_style.dart';
 import 'package:svg_flutter/svg.dart';
 
@@ -33,6 +35,7 @@ class PageViewItem extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       child: GestureDetector(
                         onTap: () {
+                          Prefs.setBool(kIsOnBoardingViewSeenSeenKey, true);
                           // Navigate to next screen
                           Navigator.pushReplacementNamed(context, 'auth');
                         },
