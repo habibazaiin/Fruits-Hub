@@ -13,21 +13,18 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: TextFormField(
-        keyboardType: keyboardType,
-        decoration: InputDecoration(
-            border: buildOutlineInputBorder(),
-            focusedBorder: buildOutlineInputBorder(),
-            enabledBorder: buildOutlineInputBorder(),
-            suffixIcon: suffixIcon,
-            filled: true,
-            fillColor: const Color(0XFFF9FAFA),
-            hintText: hintText,
-            hintStyle:
-                AppTextStyle.bold13.copyWith(color: const Color(0XFF949D9E))),
-      ),
+    return TextFormField(
+      keyboardType: keyboardType,
+      decoration: InputDecoration(
+          border: buildOutlineInputBorder(),
+          focusedBorder: buildOutlineInputBorder(),
+          enabledBorder: buildOutlineInputBorder(),
+          suffixIcon: suffixIcon,
+          filled: true,
+          fillColor: const Color(0XFFF9FAFA),
+          hintText: hintText,
+          hintStyle:
+              AppTextStyle.bold13.copyWith(color: const Color(0XFF949D9E))),
     );
   }
 
