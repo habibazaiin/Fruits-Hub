@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utils/app_images.dart';
-import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/on_boarding/presentation/views/widgets/page_view_item.dart';
 
 class OnBoardingPageView extends StatelessWidget {
-  const OnBoardingPageView({super.key});
+  const OnBoardingPageView({super.key, required this.pageController});
+  final PageController pageController;
 
   @override
   Widget build(BuildContext context) {
     return PageView(
+      controller: pageController,
       children: const [
         PageViewItem(
+          showSkip: true,
           image: Assets.assetsImagesPageViewImage1,
           backGroundImage: Assets.assetsImagesPageViewBackfround1,
           subTitle:
@@ -21,6 +23,7 @@ class OnBoardingPageView extends StatelessWidget {
           ),
         ),
         PageViewItem(
+          showSkip: false,
           image: Assets.assetsImagesPageViewImage2,
           backGroundImage: Assets.assetsImagesPageViewBackground2,
           subTitle:
