@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utils/app_color.dart';
+import 'package:fruits_hub/core/utils/app_images.dart';
 import 'package:fruits_hub/core/utils/app_text_style.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
 import 'package:fruits_hub/core/widgets/or_divider.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/do_not_have_an_account_widget.dart';
+import 'package:fruits_hub/features/auth/presentation/views/widgets/social_login_button.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -61,11 +63,31 @@ class LoginViewBody extends StatelessWidget {
             const SizedBox(
               height: 33,
             ),
-            const OrDivider()
+            const OrDivider(),
+            const SizedBox(
+              height: 16,
+            ),
+            const SocialLoginButton(
+              imagePath: Assets.assetsImagesGoogleIcon,
+              title: 'تسجيل بواسطة جوجل',
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            const SocialLoginButton(
+              imagePath: Assets.assetsImagesAppleIcon,
+              title: 'تسجيل بواسطة أبل',
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            const SocialLoginButton(
+              imagePath: Assets.assetsImagesFaceBookIcon,
+              title: 'تسجيل بواسطة فيسبوك',
+            ),
           ],
         ),
       ),
     );
   }
 }
-

@@ -33,5 +33,11 @@ class Assets {
   /// Assets for assetsImagesSplashBottom
   /// assets/images/splash_bottom.svg
   static const String assetsImagesSplashBottom = "assets/images/splash_bottom.svg";
+
+  static const String assetsImagesGoogleIcon = "assets/images/google_icon.svg";
+
+  static const String assetsImagesAppleIcon = "assets/images/apple_icon.svg";
+
+  static const String assetsImagesFaceBookIcon = "assets/images/facebook_icon.svg";
 }
 
