@@ -9,6 +9,7 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.8
   dots_indicator: ^4.0.1
+  firebase_core: ^4.2.0
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -18,8 +19,8 @@ dependencies:
   svg_flutter: ^0.0.1
 
 dev_dependencies:
-  flutter_launcher_icons: ^0.13.1 # 
-  flutter_lints: ^4.0.0 # 
+  flutter_launcher_icons: ^0.13.1 #
+  flutter_lints: ^4.0.0 #
   flutter_test:
     sdk: flutter
 
@@ -49,9 +50,7 @@ flutter_launcher_icons:
   adaptive_icon_background: "#FFFFFF"
 
 # The invalid 'flutter_assets:' section has been REMOVED.
-
-
 assets_config:
-  assets_path: assets/images/ 
+  assets_path: assets/images/
   output_class_name: Assets
   output_file_path: lib/core/utils/app_images.dart

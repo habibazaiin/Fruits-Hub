@@ -5,9 +5,15 @@ import 'package:fruits_hub/core/utils/app_color.dart';
 import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fruits_hub/l10n/app_localizations.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   await Prefs.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const FruitsHub());
 }
 
