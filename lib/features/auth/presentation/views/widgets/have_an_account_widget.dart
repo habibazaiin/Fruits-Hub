@@ -17,7 +17,7 @@ class HaveAnAccountWidget extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, 'signUpView');
+            Navigator.pop(context);
           },
           child: Text('تسجيل دخول',
               style: AppTextStyle.semiBold16

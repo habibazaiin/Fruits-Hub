@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
+import 'package:fruits_hub/features/auth/presentation/views/widgets/have_an_account_widget.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/terms_and_conditions_widget.dart';
 
 class SignUpViewBody extends StatelessWidget {
@@ -7,34 +9,42 @@ class SignUpViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
-            CustomTextFormField(
+            const CustomTextFormField(
                 hintText: 'الاسم كامل', keyboardType: TextInputType.name),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
-            CustomTextFormField(
+            const CustomTextFormField(
                 hintText: 'البريد الالكترونى',
                 keyboardType: TextInputType.emailAddress),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
-            CustomTextFormField(
+            const CustomTextFormField(
               hintText: 'كلمة المرور',
               keyboardType: TextInputType.visiblePassword,
               suffixIcon: Icon(Icons.remove_red_eye, color: Color(0XFFC9CECF)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
-            TermsAndConditionsWidget()
+            const TermsAndConditionsWidget(),
+            const SizedBox(
+              height: 30,
+            ),
+            CustomButton(onPressed: () {}, text: 'انشاء حساب جديد'),
+            const SizedBox(
+              height: 26,
+            ),
+            const HaveAnAccountWidget()
           ],
         ),
       ),
