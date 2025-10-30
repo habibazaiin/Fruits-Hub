@@ -18,8 +18,8 @@ dependencies:
   svg_flutter: ^0.0.1
 
 dev_dependencies:
-  flutter_launcher_icons: ^0.13.1 # <-- CORRECTED VERSION
-  flutter_lints: ^4.0.0 # <-- CORRECTED VERSION
+  flutter_launcher_icons: ^0.13.1 # 
+  flutter_lints: ^4.0.0 # 
   flutter_test:
     sdk: flutter
 

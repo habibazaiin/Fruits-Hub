@@ -39,7 +39,16 @@ class LoginViewBody extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            const DoNotHaveAnAccountWidget(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  'هل نسيت كلمة المرور؟',
+                  style: AppTextStyle.semiBold13
+                      .copyWith(color: AppColor.lightPrimaryColor),
+                ),
+              ],
+            ),
             const SizedBox(
               height: 33,
             ),
@@ -47,19 +56,7 @@ class LoginViewBody extends StatelessWidget {
             const SizedBox(
               height: 33,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'لا تمتلك حساب؟ ',
-                  style: AppTextStyle.semiBold16
-                      .copyWith(color: const Color(0XFF949D9E)),
-                ),
-                Text('قم بانشاء حساب',
-                    style: AppTextStyle.semiBold16
-                        .copyWith(color: AppColor.primaryColor)),
-              ],
-            ),
+            const DoNotHaveAnAccountWidget(),
             const SizedBox(
               height: 33,
             ),
