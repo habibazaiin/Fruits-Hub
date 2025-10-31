@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/errors/exception.dart';
 
 class FirebaseServiceAuth {
@@ -14,14 +13,14 @@ class FirebaseServiceAuth {
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        throw CustomException('The password provided is too weak.');
+        throw CustomException('كلمة المرور المُدخلة ضعيفة جدًا.');
       } else if (e.code == 'email-already-in-use') {
-        throw CustomException('The account already exists for that email.');
+        throw CustomException('هذا الحساب موجود بالفعل لهذا الإيميل.');
       } else {
-        throw CustomException(e.message ?? 'An unknown error occurred.');
+        throw CustomException('حدث خطأ غير معروف من Firebase.');
       }
     } catch (e) {
-      throw CustomException('An unknown error occurred.');
+      throw CustomException('حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.');
     }
   }
 }
