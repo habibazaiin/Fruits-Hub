@@ -8,16 +8,18 @@ class CustomTextFormField extends StatelessWidget {
       this.suffixIcon,
       required this.keyboardType,
       this.onSaved,
-      this.validator});
+      this.validator, this.obscureText = false});
   final String hintText;
   final Widget? suffixIcon;
   final TextInputType keyboardType;
   final void Function(String?)? onSaved;
   final String? Function(String?)? validator;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obscureText,
       onSaved: onSaved,
       validator: validator,
       keyboardType: keyboardType,

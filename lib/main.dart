@@ -1,8 +1,10 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/helper_functions/on_generate_routes.dart';
 import 'package:fruits_hub/core/services/service_locator.dart';
 import 'package:fruits_hub/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_hub/core/utils/app_color.dart';
+import 'package:fruits_hub/core/utils/simple_bloc_observer.dart';
 import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fruits_hub/l10n/app_localizations.dart';
@@ -16,6 +18,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setupServiceLocator();
+  Bloc.observer = SimpleBlocObserver();
   runApp(const FruitsHub());
 }
 

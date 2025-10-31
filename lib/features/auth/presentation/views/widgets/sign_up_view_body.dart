@@ -64,24 +64,9 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 },
               ),
               const SizedBox(height: 16),
-              CustomTextFormField(
-                hintText: 'كلمة المرور',
-                keyboardType: TextInputType.visiblePassword,
-                suffixIcon:
-                    const Icon(Icons.remove_red_eye, color: Color(0XFFC9CECF)),
-                onSaved: (value) {
-                  password = value!;
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'من فضلك ادخل كلمة المرور';
-                  }
-                  if (value.length < 6) {
-                    return 'كلمة المرور يجب ان تكون 6 احرف على الاقل';
-                  }
-                  return null;
-                },
-              ),
+              PasswordField(onSaved: (value) {
+                password = value!;
+              }),
               const SizedBox(height: 16),
               const TermsAndConditionsWidget(),
               const SizedBox(height: 30),
@@ -105,6 +90,50 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class PasswordField extends StatefulWidget {
+  const PasswordField({
+    super.key,
+    this.onSaved,
+  });
+  final void Function(String?)? onSaved;
+
+  @override
+  State<PasswordField> createState() => _PasswordFieldState();
+}
+
+class _PasswordFieldState extends State<PasswordField> {
+  bool obscureText = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomTextFormField(
+      obscureText: obscureText,
+      hintText: 'كلمة المرور',
+      keyboardType: TextInputType.visiblePassword,
+      suffixIcon: GestureDetector(
+        onTap: () {
+          setState(() {
+            obscureText = !obscureText;
+          });
+        },
+        child: obscureText
+            ? const Icon(Icons.remove_red_eye, color: Color(0XFFC9CECF))
+            : const Icon(Icons.visibility_off, color: Color(0XFFC9CECF)),
+      ),
+      onSaved: widget.onSaved,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'من فضلك ادخل كلمة المرور';
+        }
+        if (value.length < 6) {
+          return 'كلمة المرور يجب ان تكون 6 احرف على الاقل';
+        }
+        return null;
+      },
     );
   }
 }
