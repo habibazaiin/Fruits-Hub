@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/errors/exception.dart';
@@ -23,6 +25,7 @@ class AuthRepoImpl extends AuthRepo {
     } on CustomException catch (e) {
       return Left(ServerFailure(e.message));
     } catch (e) {
+      log('AuthRepoImpl - createAccount - Unexpected Error: ${e.toString()} & ecode ${e.hashCode}');
       return Left(ServerFailure('حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.'));
     }
   }

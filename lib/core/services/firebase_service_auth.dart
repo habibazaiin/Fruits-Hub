@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/errors/exception.dart';
 
@@ -20,6 +22,7 @@ class FirebaseServiceAuth {
         throw CustomException('حدث خطأ غير معروف من Firebase.');
       }
     } catch (e) {
+      log('FirebaseServiceAuth - createUserWithEmailAndPassword - Unexpected Error: ${e.toString()} & ecode ${e.hashCode}');
       throw CustomException('حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.');
     }
   }
