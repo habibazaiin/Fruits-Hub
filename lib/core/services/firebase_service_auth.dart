@@ -36,10 +36,9 @@ class FirebaseServiceAuth {
       );
       return credential.user!;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        throw CustomException('لا يوجد مستخدم بهذا الإيميل.');
-      } else if (e.code == 'wrong-password') {
-        throw CustomException('كلمة المرور غير صحيحة.');
+      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+        throw CustomException(
+            'لا يوجد مستخدم بهذا الايميل, او كلمة المرور غير صحيحة');
       } else {
         throw CustomException('حدث خطأ غير معروف من Firebase.');
       }

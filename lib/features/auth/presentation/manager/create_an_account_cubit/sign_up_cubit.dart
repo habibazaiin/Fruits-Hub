@@ -3,25 +3,25 @@ import 'package:fruits_hub/features/auth/domain/entities/user_entity.dart';
 import 'package:fruits_hub/features/auth/domain/repos/auth_repo.dart';
 import 'package:meta/meta.dart';
 
-part 'create_an_account_state.dart';
+part 'sign_up_state.dart';
 
-class CreateAnAccountCubit extends Cubit<CreateAnAccountState> {
+class SignUpCubit extends Cubit<SignUpState> {
   final AuthRepo authRepo;
-  CreateAnAccountCubit({required this.authRepo})
-      : super(CreateAnAccountInitial());
+  SignUpCubit({required this.authRepo})
+      : super(SignUpInitial());
   Future<void> createAccount(
       {required String name,
       required String email,
       required String password}) async {
-    emit(CreateAnAccountLoading());
+    emit(SignUpLoading());
     final result = await authRepo.createAccount(
         name: name, email: email, password: password);
     result.fold(
       (failure) {
-        emit(CreateAnAccountFailure(errorMessage: failure.errMessage));
+        emit(SignUpFailure(errorMessage: failure.errMessage));
       },
       (user) {
-        emit(CreateAnAccountSuccess(user: user));
+        emit(SignUpSuccess(user: user));
       },
     );
   }

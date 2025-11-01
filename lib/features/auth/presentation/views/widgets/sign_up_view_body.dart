@@ -4,7 +4,7 @@ import 'package:fruits_hub/core/helper_functions/custom_snack_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
 import 'package:fruits_hub/core/widgets/password_field.dart';
-import 'package:fruits_hub/features/auth/presentation/manager/create_an_account_cubit/create_an_account_cubit.dart';
+import 'package:fruits_hub/features/auth/presentation/manager/create_an_account_cubit/sign_up_cubit.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/have_an_account_widget.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/terms_and_conditions_widget.dart';
 
@@ -82,7 +82,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
                     if (isTermsAccepted) {
-                      context.read<CreateAnAccountCubit>().createAccount(
+                      context.read<SignUpCubit>().createAccount(
                           name: name, email: email, password: password);
                     } else {
                       CustomSnackBar.show(context,
