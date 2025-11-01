@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/core/helper_functions/custom_snack_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
+import 'package:fruits_hub/core/widgets/password_field.dart';
 import 'package:fruits_hub/features/auth/presentation/manager/create_an_account_cubit/create_an_account_cubit.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/have_an_account_widget.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/terms_and_conditions_widget.dart';
@@ -17,6 +19,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String name, email, password;
+  late bool isTermsAccepted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,14 +71,23 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 password = value!;
               }),
               const SizedBox(height: 16),
-              const TermsAndConditionsWidget(),
+              TermsAndConditionsWidget(
+                onChanged: (value) {
+                  isTermsAccepted = value;
+                },
+              ),
               const SizedBox(height: 30),
               CustomButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    context.read<CreateAnAccountCubit>().createAccount(
-                        name: name, email: email, password: password);
+                    if (isTermsAccepted) {
+                      context.read<CreateAnAccountCubit>().createAccount(
+                          name: name, email: email, password: password);
+                    } else {
+                      CustomSnackBar.show(context,
+                          message: 'يجب قبول الشروط والأحكام للمتابعة');
+                    }
                   } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;
@@ -90,50 +102,6 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class PasswordField extends StatefulWidget {
-  const PasswordField({
-    super.key,
-    this.onSaved,
-  });
-  final void Function(String?)? onSaved;
-
-  @override
-  State<PasswordField> createState() => _PasswordFieldState();
-}
-
-class _PasswordFieldState extends State<PasswordField> {
-  bool obscureText = true;
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomTextFormField(
-      obscureText: obscureText,
-      hintText: 'كلمة المرور',
-      keyboardType: TextInputType.visiblePassword,
-      suffixIcon: GestureDetector(
-        onTap: () {
-          setState(() {
-            obscureText = !obscureText;
-          });
-        },
-        child: obscureText
-            ? const Icon(Icons.remove_red_eye, color: Color(0XFFC9CECF))
-            : const Icon(Icons.visibility_off, color: Color(0XFFC9CECF)),
-      ),
-      onSaved: widget.onSaved,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'من فضلك ادخل كلمة المرور';
-        }
-        if (value.length < 6) {
-          return 'كلمة المرور يجب ان تكون 6 احرف على الاقل';
-        }
-        return null;
-      },
     );
   }
 }
