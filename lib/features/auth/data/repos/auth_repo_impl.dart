@@ -29,9 +29,10 @@ class AuthRepoImpl extends AuthRepo {
       return Left(ServerFailure('حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.'));
     }
   }
-  
+
   @override
-  Future<Either<Failure, UserEntity>> signIn({required String email, required String password}) async {
+  Future<Either<Failure, UserEntity>> signIn(
+      {required String email, required String password}) async {
     try {
       User user = await firebaseServiceAuth.signinWithEmailAndPassword(
           emailAddress: email, password: password);
@@ -43,6 +44,21 @@ class AuthRepoImpl extends AuthRepo {
       log('AuthRepoImpl - signIn - Unexpected Error: ${e.toString()} & ecode ${e.hashCode}');
       return Left(ServerFailure('حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.'));
     }
+  }
 
+  @override
+  Future<Either<Failure, UserEntity>> signInWithGoogle() {
+    try {
+      return firebaseServiceAuth.signInWithGoogle().then((user) {
+        UserModel userModel = UserModel.fromFirebaseUser(user);
+        return Right(userModel);
+      });
+    } on CustomException catch (e) {
+      return Future.value(Left(ServerFailure(e.message)));
+    } catch (e) {
+      log('AuthRepoImpl - signInWithGoogle - Unexpected Error: ${e.toString()} & ecode ${e.hashCode}');
+      return Future.value(
+          Left(ServerFailure('حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.')));
+    }
   }
 }
