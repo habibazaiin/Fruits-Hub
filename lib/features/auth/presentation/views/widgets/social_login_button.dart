@@ -4,9 +4,9 @@ import 'package:svg_flutter/svg_flutter.dart';
 
 class SocialLoginButton extends StatelessWidget {
   const SocialLoginButton(
-      {super.key, required this.imagePath, required this.title});
+      {super.key, required this.imagePath, required this.title, this.onPressed});
   final String imagePath, title;
-
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -19,7 +19,7 @@ class SocialLoginButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: ListTile(
           visualDensity: const VisualDensity(
             vertical: VisualDensity.minimumDensity,

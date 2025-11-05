@@ -47,18 +47,27 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, UserEntity>> signInWithGoogle() {
+  Future<Either<Failure, UserEntity>> signInWithGoogle() async {
     try {
-      return firebaseServiceAuth.signInWithGoogle().then((user) {
-        UserModel userModel = UserModel.fromFirebaseUser(user);
-        return Right(userModel);
-      });
+      final user = await firebaseServiceAuth.signInWithGoogle();
+
+      UserModel userModel = UserModel.fromFirebaseUser(user);
+      return Right(userModel);
+    } on FirebaseException catch (e) {
+      log('AuthRepoImpl - signInWithGoogle - FirebaseException: ${e.code} - ${e.message}');
+
+      if (e.code == 'user-cancelled' || e.code == 'sign_in_cancelled') {
+        return Left(ServerFailure('تم إلغاء عملية تسجيل الدخول.'));
+      }
+
+      return Left(ServerFailure(e.message ?? 'حدث خطأ من Firebase.'));
     } on CustomException catch (e) {
-      return Future.value(Left(ServerFailure(e.message)));
+      log('AuthRepoImpl - signInWithGoogle - CustomException: ${e.message}');
+      return Left(ServerFailure(e.message));
     } catch (e) {
-      log('AuthRepoImpl - signInWithGoogle - Unexpected Error: ${e.toString()} & ecode ${e.hashCode}');
-      return Future.value(
-          Left(ServerFailure('حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.')));
+      
+      log('AuthRepoImpl - signInWithGoogle - Unexpected Error: ${e.toString()}');
+      return Left(ServerFailure('حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.'));
     }
   }
 }

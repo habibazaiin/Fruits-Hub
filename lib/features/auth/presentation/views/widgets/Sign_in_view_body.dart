@@ -43,6 +43,16 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 onSaved: (value) {
                   email = value!;
                 },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'من فضلك ادخل البريد الالكترونى';
+                  }
+                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                      .hasMatch(value)) {
+                    return 'من فضلك ادخل بريد الكترونى صحيح';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(
                 height: 16,
@@ -93,10 +103,12 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               const SizedBox(
                 height: 16,
               ),
-              const SocialLoginButton(
-                imagePath: Assets.assetsImagesGoogleIcon,
-                title: 'تسجيل بواسطة جوجل',
-              ),
+              SocialLoginButton(
+                  imagePath: Assets.assetsImagesGoogleIcon,
+                  title: 'تسجيل بواسطة جوجل',
+                  onPressed: () {
+                    context.read<SignInCubit>().signInWithGoogle();
+                  }),
               const SizedBox(
                 height: 16,
               ),

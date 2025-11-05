@@ -10,5 +10,7 @@ abstract class AuthRepo {
 
   Future<Either<Failure, UserEntity>> signIn(
       {required String email, required String password});
+
+      
   Future<Either<Failure, UserEntity>> signInWithGoogle();
 }
