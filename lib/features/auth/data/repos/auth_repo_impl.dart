@@ -18,12 +18,12 @@ class AuthRepoImpl extends AuthRepo {
   AuthRepoImpl(
       {required this.databaseService, required this.firebaseServiceAuth});
 
-  User? user;
   @override
   Future<Either<Failure, UserEntity>> createAccount(
       {required String name,
       required String email,
       required String password}) async {
+    User? user;
     try {
       user = await firebaseServiceAuth.createUserWithEmailAndPassword(
           emailAddress: email, password: password);
@@ -63,12 +63,17 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    User? user;
     try {
-      final user = await firebaseServiceAuth.signInWithGoogle();
+      user = await firebaseServiceAuth.signInWithGoogle();
 
       UserModel userModel = UserModel.fromFirebaseUser(user);
+      await addUserData(user: userModel);
       return Right(userModel);
     } on FirebaseException catch (e) {
+      if (user != null) {
+        firebaseServiceAuth.deleteUser();
+      }
       log('AuthRepoImpl - signInWithGoogle - FirebaseException: ${e.code} - ${e.message}');
 
       if (e.code == 'user-cancelled' || e.code == 'sign_in_cancelled') {
@@ -77,9 +82,15 @@ class AuthRepoImpl extends AuthRepo {
 
       return Left(ServerFailure(e.message ?? 'حدث خطأ من Firebase.'));
     } on CustomException catch (e) {
+      if (user != null) {
+        firebaseServiceAuth.deleteUser();
+      }
       log('AuthRepoImpl - signInWithGoogle - CustomException: ${e.message}');
       return Left(ServerFailure(e.message));
     } catch (e) {
+      if (user != null) {
+        firebaseServiceAuth.deleteUser();
+      }
       log('AuthRepoImpl - signInWithGoogle - Unexpected Error: ${e.toString()}');
       return Left(ServerFailure('حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.'));
     }
