@@ -26,4 +26,10 @@ class FirebaseService extends DatabaseService {
     var user = await firestore.collection(collectionPath).doc(documentId).get();
     return user.data() as Map<String, dynamic>;
   }
+  
+  @override
+  Future<bool> doucumentExists({required String collectionPath, required String documentId}) async {
+    var doc = await firestore.collection(collectionPath).doc(documentId).get();
+    return doc.exists;
+  }
 }

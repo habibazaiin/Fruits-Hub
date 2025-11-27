@@ -68,7 +68,14 @@ class AuthRepoImpl extends AuthRepo {
       user = await firebaseServiceAuth.signInWithGoogle();
 
       UserModel userModel = UserModel.fromFirebaseUser(user);
-      await addUserData(user: userModel);
+      bool userExists = await databaseService.doucumentExists(
+          collectionPath: BackendEndpoint.isUserExists,
+          documentId: userModel.id);
+      if (!userExists) {
+        await addUserData(user: userModel);
+      } else {
+        userModel = await getUserData(userId: userModel.id) as UserModel;
+      }
       return Right(userModel);
     } on FirebaseException catch (e) {
       if (user != null) {
