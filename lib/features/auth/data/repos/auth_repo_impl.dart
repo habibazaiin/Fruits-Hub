@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/errors/exception.dart';
 import 'package:fruits_hub/core/errors/failure.dart';
-import 'package:fruits_hub/core/helper_functions/custom_snack_bar.dart';
 import 'package:fruits_hub/core/services/database_service.dart';
 import 'package:fruits_hub/core/services/firebase_service_auth.dart';
 import 'package:fruits_hub/core/utils/backend_endpoint.dart';
@@ -28,7 +27,7 @@ class AuthRepoImpl extends AuthRepo {
       user = await firebaseServiceAuth.createUserWithEmailAndPassword(
           emailAddress: email, password: password);
       UserEntity userEntity =
-          UserEntity(id: user!.uid, email: email, name: name);
+          UserEntity(id: user.uid, email: email, name: name);
       await addUserData(user: userEntity);
       return Right(userEntity);
     } on CustomException catch (e) {
@@ -52,7 +51,8 @@ class AuthRepoImpl extends AuthRepo {
       User user = await firebaseServiceAuth.signinWithEmailAndPassword(
           emailAddress: email, password: password);
       UserModel userModel = UserModel.fromFirebaseUser(user);
-      return Right(userModel);
+      var userEntity = await getUserData(userId: userModel.id);
+      return Right(userEntity);
     } on CustomException catch (e) {
       return Left(ServerFailure(e.message));
     } catch (e) {
@@ -99,7 +99,16 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future addUserData({required UserEntity user}) async {
     await databaseService.addData(
-        collectionPath: BackendEndpoint.users, data: user.toMap());
+        collectionPath: BackendEndpoint.addUserData,
+        data: user.toMap(),
+        documentId: user.id);
+  }
+
+  @override
+  Future<UserEntity> getUserData({required String userId}) async {
+    Map<String, dynamic> userData = await databaseService.getData(
+        collectionPath: BackendEndpoint.getUserData, documentId: userId);
+    return UserModel.fomJson(userData);
   }
 
   // @override

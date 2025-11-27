@@ -11,8 +11,13 @@ class FirebaseService extends DatabaseService {
   @override
   Future<void> addData(
       {required String collectionPath,
-      required Map<String, dynamic> data}) async {
-    await firestore.collection(collectionPath).add(data);
+      required Map<String, dynamic> data,
+      String? documentId}) async {
+    if (documentId != null) {
+      await firestore.collection(collectionPath).doc(documentId).set(data);
+    } else {
+      await firestore.collection(collectionPath).add(data);
+    }
   }
 
   @override
