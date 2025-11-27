@@ -10,14 +10,6 @@ class FirebaseService extends DatabaseService {
   Future<void> addData(
       {required String collectionPath,
       required Map<String, dynamic> data}) async {
-    try {
-      await firestore
-          .collection(collectionPath)
-          .add(data);
-    } catch (e) {
-      log('FirebaseService - addData - Unexpected Error: ${e.toString()} & ecode ${e.hashCode}');
-      throw CustomException('حدث خطأ غير متوقع أثناء إضافة البيانات.');
-    }
+    await firestore.collection(collectionPath).add(data);
   }
-  
 }

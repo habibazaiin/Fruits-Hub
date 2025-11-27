@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/errors/exception.dart';
 import 'package:fruits_hub/core/errors/failure.dart';
+import 'package:fruits_hub/core/helper_functions/custom_snack_bar.dart';
 import 'package:fruits_hub/core/services/database_service.dart';
 import 'package:fruits_hub/core/services/firebase_service_auth.dart';
 import 'package:fruits_hub/core/utils/backend_endpoint.dart';
@@ -16,20 +17,29 @@ class AuthRepoImpl extends AuthRepo {
   final DatabaseService databaseService;
   AuthRepoImpl(
       {required this.databaseService, required this.firebaseServiceAuth});
+
+  User? user;
   @override
   Future<Either<Failure, UserEntity>> createAccount(
       {required String name,
       required String email,
       required String password}) async {
     try {
-      User user = await firebaseServiceAuth.createUserWithEmailAndPassword(
+      user = await firebaseServiceAuth.createUserWithEmailAndPassword(
           emailAddress: email, password: password);
-      UserModel userModel = UserModel.fromFirebaseUser(user);
-      await addUserData(user: userModel);
-      return Right(userModel);
+      UserEntity userEntity =
+          UserEntity(id: user!.uid, email: email, name: name);
+      await addUserData(user: userEntity);
+      return Right(userEntity);
     } on CustomException catch (e) {
+      if (user != null) {
+        firebaseServiceAuth.deleteUser();
+      }
       return Left(ServerFailure(e.message));
     } catch (e) {
+      if (user != null) {
+        firebaseServiceAuth.deleteUser();
+      }
       log('AuthRepoImpl - createAccount - Unexpected Error: ${e.toString()} & ecode ${e.hashCode}');
       return Left(ServerFailure('حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.'));
     }
