@@ -16,9 +16,9 @@ class FirebaseService extends DatabaseService {
   }
 
   @override
-  Future<UserEntity> getUserData(
-      {required String collectionPath, required String uid}) async {
-    var user = await firestore.collection(collectionPath).doc(uid).get();
-    return UserModel.fomJson(user.data()!);
+  Future<Map<String, dynamic>> getData(
+      {required String collectionPath, required String documentId}) async {
+    var user = await firestore.collection(collectionPath).doc(documentId).get();
+    return user.data() as Map<String, dynamic>;
   }
 }
