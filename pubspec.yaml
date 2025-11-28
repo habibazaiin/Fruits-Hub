@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.3.0 <4.0.0' # A better SDK range
+  sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
   bloc: ^9.1.0
@@ -27,6 +27,8 @@ dependencies:
   svg_flutter: ^0.0.1
 
 dev_dependencies:
+  flutter_gen_runner: ^5.7.0  # أضف هذا السطر
+  build_runner: ^2.4.13        # أضف هذا السطر
   flutter_launcher_icons: ^0.13.1
   flutter_lints: ^4.0.0
   flutter_test:
@@ -57,8 +59,16 @@ flutter_launcher_icons:
   adaptive_icon_foreground: "assets/images/app_icon.png"
   adaptive_icon_background: "#FFFFFF"
 
-# The invalid 'flutter_assets:' section has been REMOVED.
-assets_config:
-  assets_path: assets/images/
-  output_class_name: Assets
-  output_file_path: lib/core/utils/app_images.dart
+flutter_gen:
+  output: lib/core/utils/app_images.dart
+  line_length: 80
+  assets:
+    enabled: true
+    outputs:
+      class_name: Assets
+      style: snake-case
+
+# assets_config:
+#   assets_path: assets/images/
+#   output_class_name: Assets
+#   output_file_path: lib/core/utils/app_images.dart

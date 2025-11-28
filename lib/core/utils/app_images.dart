@@ -47,4 +47,8 @@ class Assets {
       "assets/images/facebook_icon.svg";
 
   static const String assetsImagesCheckIcon = "assets/images/Check.svg";
+
+  static const String assetsImagesProfile = "assets/images/profile_image.png";
+
+  static const String assetsImagesNotification = "assets/images/notification.svg";
 }
