@@ -5,6 +5,7 @@ import 'package:fruits_hub/core/widgets/custom_progress_hud.dart';
 import 'package:fruits_hub/features/auth/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
 import 'package:fruits_hub/features/auth/presentation/views/sign_in_view.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/Sign_in_view_body.dart';
+import 'package:fruits_hub/features/home/presentation/views/home_view.dart';
 
 class SignInViewBodyBlocConsumer extends StatelessWidget {
   const SignInViewBodyBlocConsumer({
@@ -16,9 +17,9 @@ class SignInViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<SignInCubit, SignInState>(
       listener: (context, state) {
         if (state is SignInSuccess) {
-          CustomSnackBar.showError(
+          Navigator.pushReplacementNamed(
             context,
-            'تم تسجيل الدخول بنجاح',
+            HomeView.routeName,
           );
         }
         if (state is SignInFailure) {

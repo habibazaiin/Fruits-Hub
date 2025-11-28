@@ -17,6 +17,7 @@ class CustomSnackBar {
     Duration duration = const Duration(seconds: 3),
     String? actionLabel,
     VoidCallback? onActionPressed,
+    Color? customColor, // اضافة معامل اللون المخصص
   }) {
     final snackBar = SnackBar(
       content: Row(
@@ -39,7 +40,7 @@ class CustomSnackBar {
           ),
         ],
       ),
-      backgroundColor: _getColor(type),
+      backgroundColor: customColor ?? _getColor(type), // استخدام اللون المخصص او اللون الافتراضي
       duration: duration,
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(
@@ -87,20 +88,20 @@ class CustomSnackBar {
   }
 
   // Quick methods for different types
-  static void showSuccess(BuildContext context, String message) {
-    show(context, message: message, type: SnackBarType.success);
+  static void showSuccess(BuildContext context, String message, {Color? customColor}) {
+    show(context, message: message, type: SnackBarType.success, customColor: customColor);
   }
 
-  static void showError(BuildContext context, String message) {
-    show(context, message: message, type: SnackBarType.error);
+  static void showError(BuildContext context, String message, {Color? customColor}) {
+    show(context, message: message, type: SnackBarType.error, customColor: customColor);
   }
 
-  static void showWarning(BuildContext context, String message) {
-    show(context, message: message, type: SnackBarType.warning);
+  static void showWarning(BuildContext context, String message, {Color? customColor}) {
+    show(context, message: message, type: SnackBarType.warning, customColor: customColor);
   }
 
-  static void showInfo(BuildContext context, String message) {
-    show(context, message: message, type: SnackBarType.info);
+  static void showInfo(BuildContext context, String message, {Color? customColor}) {
+    show(context, message: message, type: SnackBarType.info, customColor: customColor);
   }
 }
 
@@ -140,9 +141,11 @@ class ExampleUsage extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
+                // استخدام لون مخصص
                 CustomSnackBar.showWarning(
                   context,
                   'Only 2 items left in stock!',
+                  customColor: Colors.deepOrange,
                 );
               },
               child: const Text('Show Stock Warning'),
@@ -150,18 +153,32 @@ class ExampleUsage extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
+                // استخدام لون مخصص مع action
                 CustomSnackBar.show(
                   context,
                   message: 'Item removed from cart',
                   type: SnackBarType.info,
+                  customColor: Colors.purple,
                   actionLabel: 'UNDO',
                   onActionPressed: () {
-                    // Handle undo action
                     CustomSnackBar.showSuccess(context, 'Item restored!');
                   },
                 );
               },
-              child: const Text('Remove with Undo'),
+              child: const Text('Remove with Custom Color'),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                // مثال آخر بلون مخصص
+                CustomSnackBar.show(
+                  context,
+                  message: 'Order placed successfully!',
+                  type: SnackBarType.success,
+                  customColor: const Color(0xFF1B5E20), // لون أخضر غامق
+                );
+              },
+              child: const Text('Custom Green'),
             ),
           ],
         ),
