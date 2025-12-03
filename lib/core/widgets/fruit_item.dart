@@ -10,8 +10,6 @@ class FruitItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 250,
-        height: 359 + 24,
         decoration: ShapeDecoration(
             color: const Color(0XFFF3F5F7),
             shape: RoundedRectangleBorder(
@@ -33,9 +31,7 @@ class FruitItem extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                SvgPicture.asset(
-                  Assets.assetsImagesPageViewImage2,
-                ),
+                const Image(image: AssetImage(Assets.assetsImagesPineapple)),
                 const SizedBox(
                   height: 24,
                 ),

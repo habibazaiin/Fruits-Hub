@@ -50,13 +50,18 @@ class Assets {
 
   static const String assetsImagesProfile = "assets/images/profile_image.png";
 
-  static const String assetsImagesNotification = "assets/images/notification.svg";
+  static const String assetsImagesNotification =
+      "assets/images/notification.svg";
 
   static const String assetsImagesSearch = "assets/images/search.png";
 
   static const String assetsImagesFilter = "assets/images/filter.png";
 
-  static const String assetsImagesTestImage = "assets/images/test image.svg";
+  static const String assetsImagesTestImage = "assets/images/test.svg";
 
-  static const String assetsImagesFeaturedItemBackGround = "assets/images/featured_item_background.svg";
+  static const String assetsImagesFeaturedItemBackGround =
+      "assets/images/featured_item_background.svg";
+
+  static const String assetsImagesPineapple =
+      "assets/images/pineapple-fruit-transparent-background-free-png 1.png";
 }
