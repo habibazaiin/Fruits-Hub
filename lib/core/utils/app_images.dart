@@ -55,4 +55,8 @@ class Assets {
   static const String assetsImagesSearch = "assets/images/search.png";
 
   static const String assetsImagesFilter = "assets/images/filter.png";
+
+  static const String assetsImagesTestImage = "assets/images/test image.svg";
+
+  static const String assetsImagesFeaturedItemBackGround = "assets/images/featured_item_background.svg";
 }
