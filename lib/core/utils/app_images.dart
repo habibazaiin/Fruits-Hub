@@ -64,4 +64,21 @@ class Assets {
 
   static const String assetsImagesPineapple =
       "assets/images/pineapple-fruit-transparent-background-free-png 1.png";
+
+  static const String assetsImagesProductActive = "assets/images/product_active.svg";
+
+  static const String assetsImagesProductInactive = "assets/images/product_inactive.svg";
+
+  static const String assetsImagesUserActive = "assets/images/user-active.svg";
+
+  static const String assetsImagesUserInactive = "assets/images/user-inactive.svg";
+
+  static const String assetsImagesHomeActive = "assets/images/home_active.svg";
+
+  static const String assetsImagesHomeInactive = "assets/images/home_inactive.svg";
+
+  static const String assetsImagesShoppingCartActive = "assets/images/shopping-cart-active.svg";
+
+  static const String assetsImagesShoppingCartInactive = "assets/images/shopping-cart-inactive.svg";
+
 }
