@@ -6,18 +6,21 @@ class BestSellingHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Row(
+    return Row(
       children: [
         const Text(
           'الأكثر مبيعًا',
           style: AppTextStyle.bold16,
-
         ),
         const Spacer(),
-        Text('المزيد',
-        style: AppTextStyle.regular13.copyWith(
-          color: const Color(0XFF949D9E)
-        ),)
+        GestureDetector(
+          onTap: () => Navigator.pushNamed(context, 'bestSellingView'),
+          child: Text(
+            'المزيد',
+            style:
+                AppTextStyle.regular13.copyWith(color: const Color(0XFF949D9E)),
+          ),
+        )
       ],
     );
   }
