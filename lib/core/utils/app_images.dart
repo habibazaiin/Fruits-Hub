@@ -81,4 +81,6 @@ class Assets {
 
   static const String assetsImagesShoppingCartInactive = "assets/images/shopping-cart-inactive.svg";
 
+  static const String assetsImagesArrow = "assets/images/arrow.svg";
+
 }
