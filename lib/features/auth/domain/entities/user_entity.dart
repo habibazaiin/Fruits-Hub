@@ -10,11 +10,5 @@ class UserEntity {
       required this.name,
 });
 
-toMap() {
-    return {
-      'id': id,
-      'email': email,
-      'name': name,
-    };
-  }
+
 }
