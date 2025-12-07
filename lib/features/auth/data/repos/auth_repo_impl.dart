@@ -55,6 +55,7 @@ class AuthRepoImpl extends AuthRepo {
           emailAddress: email, password: password);
       UserModel userModel = UserModel.fromFirebaseUser(user);
       var userEntity = await getUserData(userId: userModel.id);
+      await saveUserData(user: userEntity);
       return Right(userEntity);
     } on CustomException catch (e) {
       return Left(ServerFailure(e.message));
@@ -78,6 +79,7 @@ class AuthRepoImpl extends AuthRepo {
         await addUserData(user: userModel);
       } else {
         userModel = await getUserData(userId: userModel.id) as UserModel;
+      await saveUserData(user: userModel);
       }
       return Right(userModel);
     } on FirebaseException catch (e) {
