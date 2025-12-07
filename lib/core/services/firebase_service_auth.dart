@@ -75,6 +75,11 @@ class FirebaseServiceAuth {
     }
   }
 
+  bool isUserLoggedIn() {
+    final user = FirebaseAuth.instance.currentUser;
+    return user != null;
+  }
+
   // Future<UserCredential> signInWithFacebook() async {
   //   // Trigger the sign-in flow
   //   final LoginResult loginResult = await FacebookAuth.instance.login();
