@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruit_hub_dashboard/features/presentation/views/dashboard_view.dart';
+import 'package:fruit_hub_dashboard/features/dashboard/presentation/views/dashboard_view.dart';
 
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
