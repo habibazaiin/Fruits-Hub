@@ -12,37 +12,35 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    CustomHomeAppBar(),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    CustomSearchTextField(),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    FeaturedItemList(),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    BestSellingHeader(),
-                    SizedBox(
-                      height: 8,
-                    ),
-                  ],
-                ),
+    return const SafeArea(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  CustomHomeAppBar(),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  CustomSearchTextField(),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  FeaturedItemList(),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  BestSellingHeader(),
+                  SizedBox(
+                    height: 8,
+                  ),
+                ],
               ),
-              BestSellingGridView(),
-            ],
-          ),
+            ),
+            BestSellingGridView(),
+          ],
         ),
       ),
     );
